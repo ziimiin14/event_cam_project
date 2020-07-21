@@ -4,10 +4,10 @@ import time
 import numpy as np
 
 # Same command function as streaming, its just now we pass in the file path, nice!
-cap = cv2.VideoCapture('video_file/output005.avi')
+cap = cv2.VideoCapture('video_file/test2.avi')
 
 # FRAMES PER SECOND FOR VIDEO
-fps =200		
+fps =100		
 # Always a good idea to check if the video was acutally there
 # If you get an error at thsi step, triple check your file path!!
 if cap.isOpened()== False: 
@@ -18,7 +18,7 @@ if cap.isOpened()== False:
 while cap.isOpened():
     
     
-    
+    	
     # Read the video file.
     ret, frame = cap.read()
     
@@ -31,8 +31,8 @@ while cap.isOpened():
          # Display the frame at same frame rate of recording
         # Watch lecture video for full explanation
         time.sleep(1/fps)
-        cv2.namedWindow('frame',cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('frame', 960,720)
+        #cv2.namedWindow('frame',cv2.WINDOW_NORMAL)
+        #cv2.resizeWindow('frame', 960,720)
         cv2.imshow('frame',frame)
  
         # Press q to quit

@@ -51,8 +51,8 @@ def get_event(device):
     data = device.get_event('events')
     return data
 
-filePath = 'video_file/translation_range.avi' # or rotation_rpm
-out= cv2.VideoWriter(filePath,cv2.VideoWriter_fourcc(*'MPEG'),200,size,0)
+filePath = 'video_file/test2.avi' # or rotation_rpm
+out= cv2.VideoWriter(filePath,cv2.VideoWriter_fourcc(*'MPEG'),50,size,0)
 dict_temp = {}
 i = 0
 
@@ -122,8 +122,8 @@ out.release()
 cv2.destroyAllWindows()
 
 
-#Save dict_temp into npy file
-np.savez_compressed('../translation_range.npz',dict_temp)
+#Save dict_temp into  file
+np.savez_compressed('../test2.npz',dict_temp)
 
 
 
