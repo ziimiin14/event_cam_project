@@ -51,9 +51,10 @@ def get_event(device):
     data = device.get_event('events')
     return data
 
-filePath = 'video_file/test2.avi' # or rotation_rpm
+filePath = '../test1.avi' # or rotation_rpm
 out= cv2.VideoWriter(filePath,cv2.VideoWriter_fourcc(*'MPEG'),50,size,0)
 dict_temp = {}
+dict_temp1 = {}
 i = 0
 
 while True:
@@ -73,6 +74,7 @@ while True:
 
             #Update dictionary
             dict_temp.update({i:pol_events_1})
+            dict_temp1.update({i:imu_events})
             i = i+1
 
 
@@ -84,6 +86,7 @@ while True:
             #       device.get_config(
             #           libcaer.DAVIS_CONFIG_APS,
             #           libcaer.DAVIS_CONFIG_APS_EXPOSURE))
+            #print('IMU:', imu_events)
 
             if num_pol_event != 0:
                 img = pol_events[..., 1]-pol_events[..., 0]
@@ -97,7 +100,7 @@ while True:
                 # Show the frame
                 #cv2.namedWindow('frame',cv2.WINDOW_NORMAL)
                 #cv2.resizeWindow('frame', 960,720)
-                #cv2.imshow("frame", img)
+                cv2.imshow("frame", img)
 
                 #Convert img from 1 channel into 3 channels
                 #img2[:,:,0] = img
@@ -118,12 +121,13 @@ while True:
         device.shutdown()
         break
 
-out.release()
+#out.release()
 cv2.destroyAllWindows()
 
 
 #Save dict_temp into  file
-np.savez_compressed('../test2.npz',dict_temp)
+np.savez_compressed('../test1_polEvents.npz',dict_temp)
+np.savez_compressed('../test1_IMU.npz',dict_temp1)
 
 
 
