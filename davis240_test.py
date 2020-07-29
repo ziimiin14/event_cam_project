@@ -124,10 +124,20 @@ while True:
 #out.release()
 cv2.destroyAllWindows()
 
+dict_time = {} 
+
+for k,v in dict_temp.items():
+    dict_time.update({k:v[:,0].reshape(v[:,0].shape[0],1)/1e6})
+    dict_time[k] = dict_time[k].astype('float32')
+    dict_temp[k] = dict_temp[k][:,1:]
+    dict_temp[k] = dict_temp[k].astype('uint8')
+
+
 
 #Save dict_temp into  file
-np.savez_compressed('../test1_polEvents.npz',dict_temp)
-np.savez_compressed('../test1_IMU.npz',dict_temp1)
+np.savez_compressed('../test_polEvents.npz',dict_temp)
+np.savez_compressed('../test_IMU.npz',dict_temp1)
+np.savez_compressed('../test_time.npz',dict_time)
 
 
 
