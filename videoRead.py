@@ -4,10 +4,10 @@ import time
 import numpy as np
 
 # Same command function as streaming, its just now we pass in the file path, nice!
-cap = cv2.VideoCapture('video_file/test2.avi')
+cap = cv2.VideoCapture('../test/6300ERPM/static_rotation_6300ERPM.avi')
 
 # FRAMES PER SECOND FOR VIDEO
-fps =100		
+fps =50		
 # Always a good idea to check if the video was acutally there
 # If you get an error at thsi step, triple check your file path!!
 if cap.isOpened()== False: 
@@ -21,7 +21,7 @@ while cap.isOpened():
     	
     # Read the video file.
     ret, frame = cap.read()
-    
+
     # If we got frames, show them.
     if ret == True:
         

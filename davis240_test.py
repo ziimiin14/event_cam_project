@@ -51,8 +51,9 @@ def get_event(device):
     data = device.get_event('events')
     return data
 
-filePath = '../test1.avi' # or rotation_rpm
-out= cv2.VideoWriter(filePath,cv2.VideoWriter_fourcc(*'MPEG'),50,size,0)
+filePath = '../test/trial/test1.avi' # or rotation_rpm
+out= cv2.VideoWriter(filePath,cv2.VideoWriter_fourcc(*'MPEG'),1800,size,0)
+out.set(cv2.CAP_PROP_FPS,1800)
 dict_temp = {}
 dict_temp1 = {}
 i = 0
@@ -121,7 +122,7 @@ while True:
         device.shutdown()
         break
 
-#out.release()
+out.release()
 cv2.destroyAllWindows()
 
 dict_time = {} 
@@ -135,9 +136,9 @@ for k,v in dict_temp.items():
 
 
 #Save dict_temp into  file
-np.savez_compressed('../test_polEvents.npz',dict_temp)
-np.savez_compressed('../test_IMU.npz',dict_temp1)
-np.savez_compressed('../test_time.npz',dict_time)
+np.savez_compressed('../test/trial/test_polEvents.npz',dict_temp)
+np.savez_compressed('../test/trial/test_IMU.npz',dict_temp1)
+np.savez_compressed('../test/trial/test_time.npz',dict_time)
 
 
 
