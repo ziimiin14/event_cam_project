@@ -52,8 +52,8 @@ def get_event(device):
     return data
 
 filePath = '../test/trial/test1.avi' # or rotation_rpm
-out= cv2.VideoWriter(filePath,cv2.VideoWriter_fourcc(*'MPEG'),1800,size,0)
-out.set(cv2.CAP_PROP_FPS,1800)
+out= cv2.VideoWriter(filePath,cv2.VideoWriter_fourcc(*'MPEG'),240,size,0)
+# out.set(cv2.CAP_PROP_FPS,1800)
 dict_temp = {}
 dict_temp1 = {}
 i = 0
