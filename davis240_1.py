@@ -42,7 +42,8 @@ def get_event(device):
     data = device.get_event('events')
     return data
 
-pol_Evt = np.array([[0,0,0,0,0]])
+#pol_Evt = np.array([[0,0,0,0,0]])
+pol_Evt = [[0,0,0,0,0]]
 time= np.array([[0,]],dtype=np.float32)
 
 while True:
@@ -54,10 +55,10 @@ while True:
         frames_ts_1, frames_1, imu_events_1,
         num_imu_event_1) = data1
 
-        print(pol_events_1[:,0])
+        #print(pol_events_1[:,0])
         #Update dictionary
-        pol_Evt = np.insert(pol_Evt,pol_Evt.shape[0],pol_events_1,axis=0)
-
+        #pol_Evt = np.insert(pol_Evt,pol_Evt.shape[0],pol_events_1,axis=0)
+        pol_Evt.append(pol_events_1)
 
     except KeyboardInterrupt:
         device.shutdown()
@@ -66,11 +67,17 @@ while True:
 #out.release()
 cv2.destroyAllWindows()
 
-
+pol_Evt.pop(0)
+pol_Evt = np.concatenate(np.array(pol_Evt),axis=0)
+print('Done concatenate')
 time_temp = pol_Evt[:,0].reshape(pol_Evt.shape[0],1)
-time = np.insert(time,time.shape[0],time_temp,axis=1)
+time = np.append(time,time_temp,axis=0)
+time = time[1:,:].reshape(-1,1)
+print('Done time assign')
+#time = np.insert(time,time.shape[0],time_temp,axis=1)
 pol_Evt = pol_Evt[:,1:]
 pol_Evt = pol_Evt.astype('uint8')
+print('Done event assign')
 
-np.savez_compressed('polEvents.npz',pol_Evt)
-np.savez_compressed('time.npz',time)
+np.savez_compressed('polEvents_1.npz',pol_Evt)
+np.savez_compressed('time_1.npz',time)
