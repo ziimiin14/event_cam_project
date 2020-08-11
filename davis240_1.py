@@ -83,6 +83,10 @@ pol_Evt = pol_Evt[:,1:]
 pol_Evt = pol_Evt.astype('uint8')
 print('Done event assign')
 
-np.savez_compressed('polEvents_2.npz',pol_Evt)
-np.savez_compressed('time_2.npz',time)
-np.savez_compressed('imu_2.npz',imu)
+np.savez_compressed('../test/Rotation/6300ERPM/polEvents',pol_Evt)
+np.savez_compressed('../test/Rotation/6300ERPM/time',time)
+np.savez_compressed('../test/Rotation/6300ERPM/imu',imu)
+
+# np.savez_compressed('../test/Translation/6300ERPM/polEvents.npz',pol_Evt)
+# np.savez_compressed('../test/Translation/6300ERPM/time.npz',time)
+# np.savez_compressed('../test/Translation/6300ERPM/imu.npz',imu)
