@@ -44,7 +44,7 @@ def get_event(device):
 
 #pol_Evt = np.array([[0,0,0,0,0]])
 pol_Evt = [[0,0,0,0,0]]
-time= np.array([[0,]],dtype=np.float32)
+#time= np.array([[0,]],dtype=np.float32)
 imu = [[0,0,0,0,0,0,0,0]]
 
 while True:
@@ -70,13 +70,18 @@ while True:
 cv2.destroyAllWindows()
 
 pol_Evt.pop(0)
-pol_Evt = np.concatenate(np.array(pol_Evt),axis=0)
+#pol_Evt = np.concatenate(np.array(pol_Evt),axis=0)
+pol_Evt = np.array(pol_Evt)
+pol_Evt = pol_Evt.reshape(pol_Evt.shape[1],pol_Evt.shape[2])
 imu.pop(0)
-imu = np.concatenate(np.array(imu),axis=0)
+#imu = np.concatenate(np.array(imu),axis=0)
+imu= np.array(imu)
+imu = imu.reshape(imu.shape[1],imu.shape[2])
 print('Done concatenate')
 time_temp = pol_Evt[:,0].reshape(pol_Evt.shape[0],1)
-time = np.append(time,time_temp,axis=0)
-time = time[1:,:].reshape(-1,1)
+time = time_temp.astype('float32')
+#time = np.append(time,time_temp,axis=0)
+#time = time[1:,:].reshape(-1,1)
 print('Done time assign')
 #time = np.insert(time,time.shape[0],time_temp,axis=1)
 pol_Evt = pol_Evt[:,1:]
