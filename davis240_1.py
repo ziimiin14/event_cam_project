@@ -72,11 +72,21 @@ cv2.destroyAllWindows()
 pol_Evt.pop(0)
 #pol_Evt = np.concatenate(np.array(pol_Evt),axis=0)
 pol_Evt = np.array(pol_Evt)
-pol_Evt = pol_Evt.reshape(pol_Evt.shape[1],pol_Evt.shape[2])
+pol_Evt = np.concatenate(pol_Evt,axis=None)
+pol_Evt = pol_Evt.reshape(int(pol_Evt.shape[0]/5),5)
+#pol_Evt = pol_Evt.reshape(pol_Evt.shape[1]*pol_Evt.shape[0],pol_Evt.shape[2])
 imu.pop(0)
 #imu = np.concatenate(np.array(imu),axis=0)
 imu= np.array(imu)
-imu = imu.reshape(imu.shape[1],imu.shape[2])
+imu = np.concatenate(imu,axis=None)
+# if ((imu.shape[0]%8) != 0):
+#     #imu = np.insert(imu,imu.shape[0],[0,0,0,0,0,0,0],axis=0)
+#     imu = imu[:-1]
+#     imu = imu.reshape(int(imu.shape[0]/8),8)
+# else:
+#     imu = imu.reshape(int(imu.shape[0]/8),8)
+
+#imu = imu.reshape(imu.shape[1],imu.shape[2])
 print('Done concatenate')
 time_temp = pol_Evt[:,0].reshape(pol_Evt.shape[0],1)
 time = time_temp.astype('float32')
